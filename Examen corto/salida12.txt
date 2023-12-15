@@ -1,0 +1,4 @@
+El resultado es aprobado: 84.000000
+, 75.000000
+, 99.000000
+, promedio: 86.000000
