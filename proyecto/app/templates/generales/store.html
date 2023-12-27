@@ -1,101 +1,35 @@
-
+{% extends 'generales/main.html'%}
 {% load static%}
-{% block content %}
-<!DOCTYPE html>
-<html lang="en">
-   
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asignación de cursos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: auto;
-        }
-        .form-container {
-            margin-top: 20px;
-        }
-        .login-form {
-            display: flex;
-            flex-direction: column;
-        }
-        .login-form input {
-            margin-bottom: 10px;
-        }
-        .login-form button {
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-        <div class="container">
-        <h1>Asignación de cursos</h1>
-        <p>Por favor, inicie sesión para continuar:</p>
-        <div class="form-container">
-            <form class="login-form">
-                <input type="text" name="username" placeholder="Usuario">
-                <input type="password" name="password" placeholder="Contraseña">
-                <button type="submit">Iniciar sesión</button>
-            </form>
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/header.css'%}">
+    {% block content %}
+
+        <div class="row">
+            {% for product in products %}
+                <div class="product-img">
+                    <img src="{{product.imageURL}}"alt="Esta es una descripcion alternativa de la imagen para cuando no se pueda mostrar" width="380" height="280" />
+                </div>
+                <div class="box-element product">
+                    <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
+                    <button  data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Agregar al carrito</button>
+                    <a class="btn btn-outline-success" href="#">Ver</a>
+                    <h4 class="product-price">Q{{product.price|floatformat:2}} <del class="product-old-price">-10%</del></h4>
+                </div>
+            {% endfor %}
         </div>
-    </div>
-</body>
 
-<div class="row">
-    <div class="product-img">
-        <img src="{% static 'images/mate.jpg'%}"alt="Esta es una descripcion alternativa de la imagen para cuando no se pueda mostrar" width="380" height="280" />
-    </div>
-    <div class="box-element product">
-        <h3 class="product-name"><a href="#">Matemática aplica 4</a></h3>
-        <button class="btn btn-outline-secondary add-btn">Agregar al carrito</button>
-        <a class="btn btn-outline-success" href="#">Ver</a>
-        <h4 class="product-price">$240.00 <del class="product-old-price">$250.00</del></h4>
-    </div>
-</div>
+        <div id="top-header">
+            <div class="top-header">
+                <ul class="header-links pull-left">
+                </ul>
+                <ul class="header-links pull-right">
+                    <li><a href="#"><i class="fa fa-dollar"></i></a></li>
+                </ul>
+            </div>
+        </div>
 
-<div class="row">
-    <div class="product-img">
-        <img src="{% static 'images/fisica.jpg'%}"alt="Esta es una descripcion alternativa de la imagen para cuando no se pueda mostrar" width="380" height="280" />
-    </div>
-    <div class="box-element product">
-        <h3 class="product-name"><a href="#">Teoría electromagnética 2</a></h3>
-        <button class="btn btn-outline-secondary add-btn">Agregar al carrito</button>
-        <a class="btn btn-outline-success" href="#">Ver</a>
-        <h4 class="product-price">$115.00 <del class="product-old-price">$130.00</del></h4>
-    </div>
-</div>
+    {% endblock %}
 
-<div class="row">
-    <div class="product-img">
-        <img src="{% static 'images/pro.jpg'%}"alt="Esta es una descripcion alternativa de la imagen para cuando no se pueda mostrar" width="380" height="280" />
-    </div>
-    <div class="box-element product">
-        <h3 class="product-name"><a href="#">Proyecto de computación aplicada a ingeniería electrónica</a></h3>
-        <button class="btn btn-outline-secondary add-btn">Agregar al carrito</button>
-        <a class="btn btn-outline-success" href="#">Ver</a>
-        <h4 class="product-price">$115.00 <del class="product-old-price">$150.00</del></h4>
-    </div>
-</div>
-
-<div class="row">
-    <div class="product-img">
-        <img src="{% static 'images/electronica.jpg'%}"alt="Esta es una descripcion alternativa de la imagen para cuando no se pueda mostrar" width="380" height="280" />
-    </div>
-    <div class="box-element product">
-        <h3 class="product-name"><a href="#">Electrónica 4</a></h3>
-        <button class="btn btn-outline-secondary add-btn">Agregar al carrito</button>
-        <a class="btn btn-outline-success" href="#">Ver</a>
-        <h4 class="product-price">$195.00 <del class="product-old-price">$200.00</del></h4>
-    </div>
-</div>
-
-</html>
-
-{% endblock content %}
 
 

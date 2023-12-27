@@ -1,5 +1,125 @@
-{% extends 'generales/main.html' %}
+{% extends 'generales/main.html'%}
 {% load static%}
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
-<img src="{% static 'images/j.png'%}">
-<h3>Checkout</h3>
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Pago</title>
+</head>
+<body>
+
+<h2>Resumen de pago</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+     {% for item in items%}
+        <tr>
+            <td><div class="product-img">
+                <img src="{{item.product.imageURL}}"alt="Esta es una descripcion alternativa de la imagen para cuando no se pueda mostrar" width="190" height="140" />
+            </div>{{item.product.name}}</td>
+            <td>Q{{item.product.price|floatformat:2}}</td>
+        </tr>
+    </tbody>
+    {% endfor%}
+    <tfoot>
+        <tr>
+            <td colspan="3" class="total">Total:</td>
+          <td>Q{{order.get_cart_total|floatformat:2}}</td>
+        </tr>
+    </tfoot>
+</table>
+
+    <div id="shipping-info" method="post">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" required><br>
+        
+        <label for="correo">Correo Electrónico:</label><br>
+        <input type="email" id="correo" name="correo" required><br>
+        
+        <label for="direccion">Dirección:</label><br>
+        <input type="text" id="direccion" name="direccion" required><br>
+        
+        <label for="numero">NIT:</label><br>
+        <input type="text" id="numero" name="numero" required><br>
+        
+        <label for="vencimiento">Fecha de Vencimiento:</label><br>
+        <input type="date" id="vencimiento" name="vencimiento" required><br>
+        
+        <label for="codigo">Código de Seguridad:</label><br>
+        <input type="text" id="codigo" name="codigo" required><br>
+        
+        <label for="cantidad">Cantidad a Pagar:</label><br>
+        <input type="number" id="cantidad" name="cantidad" required><br>
+        
+        <button id="make-pago">Pagar</button>
+    </div>
+
+</body>
+<div id="top-header">
+    <div class="top-header">
+        <ul class="header-links pull-left">
+        </ul>
+        <ul class="header-links pull-right">
+            <li><a href="#"><i class="fa fa-dollar"></i></a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var shipping = '{{Order.shipping}}'
+    var total = '{{order.get_cart_total}}'
+    document.getElementById("make-pago").addEventListener('click', function(e){
+        submitFormData()
+    })
+    function submitFormData(){
+        console.log('Boton de pago clickeado')
+        alert('Orden Completada');
+            window.location.href = "{% url 'tienda' %}"
+        var userFormData = {
+            'nombre':null,
+            'correo':null,
+            'total':total,
+        }
+
+        var shippingInfo = {
+            'nombre':null,
+            'correo':null,
+            'direccion':null,
+            'numero':null,
+            'vencimiento':null,
+            'codigo':null,
+            'cantidad':null,
+            'total':total,
+        }
+        if (shipping !='False'){
+            shippingInfo.nombre=nombre.value
+            shippingInfo.correo=correo.value
+            shippingInfo.direccion=direccion.value
+            shippingInfo.numero=numero.value
+            shippingInfo.vencimiento=vencimiento.value
+            shippingInfo.codigo=codigo.value
+            shippingInfo.cantidad=cantidad.value        
+
+        }
+        var url = '/process_order/'
+        fetch(url,{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+            },
+            body:JSON.stringify({'shipping-info':userFormData, 'shipping':shippingInfo})
+         })
+
+        .then((response) => response.json())
+        .then((data) => {
+            cosole.log('Completo', data);
+           
+        })
+    }
+</script>
+{% endblock content %}

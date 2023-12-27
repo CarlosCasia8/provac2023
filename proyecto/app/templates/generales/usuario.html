@@ -1,0 +1,64 @@
+{% extends 'generales/main.html'%}
+{% load static%}
+{% block navbar%}
+{% endblock %}
+
+{% block content %}
+<br>
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignación de cursos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: auto;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .login-form input {
+            margin-bottom: 10px;
+        }
+        .login-form button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+        <div class="container">
+        <h1>Asignación de cursos</h1>
+        <p>Por favor, inicie sesión para continuar:</p>
+        <div class="form-container">
+            <form class="login-form">
+                <input type="text" name="username" placeholder="Usuario">
+                <input type="password" name="password" placeholder="Contraseña">
+                <button type="submit">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+</body>
+<button class="btn btn-danger" type="submit">Regístrate</button>
+        <a class="btn btn-secondary" href="{% url 'registro' %}">Continuar</a>
+</html>
+<div id="top-header">
+    <div class="top-header">
+        <ul class="header-links pull-left">
+        </ul>
+        <ul class="header-links pull-right">
+            <li><a href="#"><i class="fa fa-dollar"></i></a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
