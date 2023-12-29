@@ -3,7 +3,11 @@ import datetime
 from .models import *
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login as th
+from .forms import CustomUserCreationForm
+from django.contrib.auth import authenticate
+
+
 import json
 # Create your views here.
 def store(request):
@@ -128,3 +132,17 @@ def processOrder(request):
 def exit(request):
     logout(request)
     return redirect('tienda')
+
+def register(request):
+    data ={ 
+        'form': CustomUserCreationForm()
+    }
+    if request.method == 'POST':
+        user_creation_form = CustomUserCreationForm(data=request.POST)
+
+        if user_creation_form.is_valid():
+            user_creation_form.save()
+            user = authenticate(username=user_creation_form.cleaned_data['username'], password = user_creation_form.cleaned_data['password1'])
+            th(request, user)
+            return redirect('login')
+    return render(request, 'registration/register.html', data)

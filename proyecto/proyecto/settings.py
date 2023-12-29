@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
+    'crispy_bootstrap5',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,6 +55,10 @@ JAZZMIN_SETTINGS = {
 JAZZMIN_UI_TWEAKS = {
     "theme": "slate",
 }
+#Variables globales
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 
 UTH_PASSWORD_VALIDATORS = [
 {

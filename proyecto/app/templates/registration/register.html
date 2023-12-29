@@ -1,0 +1,17 @@
+{% extends 'generales/main.html'%}
+{% load static%}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<h3>Registro de usuario</h3>
+
+<br>
+
+<form action="" method="post">
+    {% csrf_token %}
+    
+    <h5 class="card-title">Complete todos los campos.</h5>
+    {{ form | crispy}}
+    <button class="btn btn-sm btn-primary float-end" type="submit">Registrarse</button>
+</form>
+{% endblock %}
