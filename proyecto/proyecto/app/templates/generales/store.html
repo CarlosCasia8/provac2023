@@ -1,0 +1,35 @@
+{% extends 'generales/main.html'%}
+{% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/header.css'%}">
+    {% block content %}
+
+        <div class="row">
+            {% for product in products %}
+                <div class="product-img">
+                    <img src="{{product.imageURL}}"alt="Esta es una descripcion alternativa de la imagen para cuando no se pueda mostrar" width="380" height="280" />
+                </div>
+                <div class="box-element product">
+                    <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
+                    <button  data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Agregar al carrito</button>
+                    <a class="btn btn-outline-success" href="#">Ver</a>
+                    <h4 class="product-price">Q{{product.price|floatformat:2}} <del class="product-old-price">-10%</del></h4>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="top-header">
+            <div class="top-header">
+                <ul class="header-links pull-left">
+                </ul>
+                <ul class="header-links pull-right">
+                    <li><a href="#"><i class="fa fa-dollar"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+    {% endblock %}
+
+
+

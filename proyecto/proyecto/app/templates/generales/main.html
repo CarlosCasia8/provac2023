@@ -1,0 +1,139 @@
+
+{% load static%}
+{% load admin_urls %}
+{% block extrastatic %} {% endblock %}
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+<html lang="es">
+<head>
+    
+	<title>Academia de ingeniería</title>
+		<!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+				<div class="top-header">
+					<ul class="header-links pull-left">
+						<li><a href="#"><i class="fa fa-phone"></i>Telefono:  +502 2448-6666</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i>Correo electrónico: Academia.ingenieria0980@email.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i>Dirección:  11 Avenida, Cdad. de Guatemala</a></li>
+					</ul>
+					<ul class="header-links pull-right">
+						<li><a href="#"><i class="fa fa-dollar"></i> GTQ.</a></li>
+					</ul>
+				</div>
+			</div>
+            <script type="text/javascript">
+                var user = '{{request.user}}'    
+                    function getToken(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie !== ''){
+                            var cookies = document.cookie.split(';');
+                            for (var i =0; i< cookies.length; i++) {
+                                var cookie = cookies[i].trim();
+                                // Does this
+                                if(cookie.substring(0, name.length + 1)=== (name + '=')) {
+                                    cookieValue=decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+                var csrftoken = getToken('csrftoken')
+            </script>
+		</header>
+        <!-- /TOP HEADER -->
+
+			<!-- MAIN HEADER -->
+		    <div id="header">
+				<!-- container -->
+				<div class="header">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+									<img src="{% static 'images/logo7 (1).png'%}" alt="">
+								</a>
+							</div>
+                             <div class="box">
+                                 <H1>Facultad de Ingeniería de la Universidad de San Carlos de Guatemala</H1>
+                            </div>
+						</div>
+						<!-- /LOGO -->
+
+						<!-- SEARCH BAR -->
+						<div class="col-md-6">
+							<div class="header-search">
+                                
+                                <div class="search-btn">
+                                    
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        
+     
+
+        <link rel="stylesheet" href="{% static 'css/header.css' %}">
+        <meta charset="UTF-8">
+        <title>{% block title %} Document {% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+
+    <title>Barra de navegación horizontal con listas y estilos CSS</title>
+
+    <style type="text/css">
+    #navegador ul{
+    list-style-type: none;
+    text-align: center;
+    }
+    #navegador li{
+    display: inline;
+    text-align: center;
+    margin: 0 10px 0 0;
+    }
+    #navegador li a {
+    padding: 2px 7px 2px 7px;
+    color: #666;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    }
+    #navegador li a:hover{
+    background-color: #333333;
+    color: #ffffff;
+    }
+    </style>
+</head>
+<body>
+
+<header id="navegador">
+<ul>
+<li><a href="{% url 'tienda' %}">Tienda</a></li>
+<li><a href="{% url 'carrito' %}">Carrito</a></li>
+
+    
+    {% if request.user.is_authenticated %}
+        <li><a href="{% url 'exit'%} ">Salir</a></li>
+        <h1>
+            @{{ user.username | upper}}, Bienvenido.
+        </h1>
+    {% else %}
+        <li><a href="{% url 'login'%} ">Ingresar</a></li>
+    {% endif %}
+</ul>
+
+
+</header>
+
+{% block content %}
+ 
+{% endblock %}
+ <script type="text/javascript" src="{% static 'js/cart.js'%}"></script>
+</body>
+</html>
+
