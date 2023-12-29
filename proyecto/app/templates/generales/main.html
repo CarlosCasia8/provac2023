@@ -15,7 +15,7 @@
 				<div class="top-header">
 					<ul class="header-links pull-left">
 						<li><a href="#"><i class="fa fa-phone"></i>Telefono:  +502 2448-6666</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i>Correo:  electrónico Academia.ingenieria@email.com</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i>Correo electrónico: Academia.ingenieria0980@email.com</a></li>
 						<li><a href="#"><i class="fa fa-map-marker"></i>Dirección:  11 Avenida, Cdad. de Guatemala</a></li>
 					</ul>
 					<ul class="header-links pull-right">
@@ -115,8 +115,19 @@
 <ul>
 <li><a href="{% url 'tienda' %}">Tienda</a></li>
 <li><a href="{% url 'carrito' %}">Carrito</a></li>
-<li><a href="{% url 'usuario' %}">Sesión</a></li>
+
+    
+    {% if request.user.is_authenticated %}
+        <li><a href="{% url 'exit'%} ">Salir</a></li>
+        <h1>
+            @{{ user.username | upper}}, Bienvenido.
+        </h1>
+    {% else %}
+        <li><a href="{% url 'login'%} ">Ingresar</a></li>
+    {% endif %}
 </ul>
+
+
 </header>
 
 {% block content %}

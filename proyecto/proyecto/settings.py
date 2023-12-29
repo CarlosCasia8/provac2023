@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,10 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +39,29 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app.apps.AppConfig',
+]
+
+# Jazzmin Settings
+JAZZMIN_SETTINGS = {
+     "welcome_sign": "Bienvenidos al panel de administrador",
+      "site_logo": "images/logo1.PNG",
+
+
+}
+#tema
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "slate",
+}
+
+UTH_PASSWORD_VALIDATORS = [
+{
+'NAME':
+'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+{
+'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+'OPTIONS': { 'min_length': 12,}
+}
 ]
 
 MIDDLEWARE = [
@@ -109,9 +133,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-mx'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Guatemala'
 
 USE_I18N = True
 
@@ -131,3 +155,6 @@ STATICFILES_DIRS =[
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'statics/images')
 MEDIA_URL = '/images/'
+#Variables de redireccion de Login y Logout
+LOGIN_REDIRECT_URL= 'tienda'
+LOGOUT_REDIRECT_URL= 'tienda'

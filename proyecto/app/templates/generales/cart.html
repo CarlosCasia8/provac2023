@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compra</title>
+    <title>Carrito de cursos</title>
 
     <style>
         .container {
@@ -38,14 +38,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Carrito de Compra</h1>
+        <h1>Carrito de cursos</h1>
         <table class="table">
             <thead>
                 <tr>
                     <th>Curso</th>
                     <th>Precio</th>
                     <th>Cantidad</th>
-                    <th>subTotal</th>
+                    <th>Subtotal</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,7 +55,7 @@
                         <img src="{{item.product.imageURL}}"alt="Esta es una descripcion alternativa de la imagen para cuando no se pueda mostrar" width="190" height="140" />
                     </div>{{item.product.name}}</td>
                     <td>Q{{item.product.price|floatformat:2}}</td>
-                    <td>{{item.quantity}}
+                    <td>{{  item.quantity}}
                         <div class="chg-quantity" >
 
                         <img data-product="{{item.product.id}}" data-action="add" class ="chg-quantity update-cart" src="{% static 'images/arriba.png' %}">
@@ -71,6 +71,7 @@
             <tfoot>
                 <tr>
                     <td colspan="3" class="total">Total:</td>
+                    
                   <td>Q{{order.get_cart_total|floatformat:2}}</td>
                 </tr>
             </tfoot>
