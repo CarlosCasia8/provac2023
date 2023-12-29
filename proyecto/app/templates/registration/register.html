@@ -2,16 +2,59 @@
 {% load static%}
 {% block content %}
 {% load crispy_forms_tags %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignación de cursos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: auto;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .login-form input {
+            margin-bottom: 10px;
+        }
+        .login-form button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de usuario</h1>
+        <p>Por favor, registrarse para continuar:</p>
+        <div class="form-container">
 
-<h3>Registro de usuario</h3>
+        <h3>El proceso de inicio de sesión.</h3>
 
-<br>
+        <br>
 
-<form action="" method="post">
-    {% csrf_token %}
-    
-    <h5 class="card-title">Complete todos los campos.</h5>
-    {{ form | crispy}}
-    <button class="btn btn-sm btn-primary float-end" type="submit">Registrarse</button>
-</form>
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            <h5 class="card-title">Complete todos los campos.</h5>
+            {{ form | crispy}}
+            <button class="btn btn-sm btn-primary float-end" type="submit">Registrarse</button>
+        </form>
+    </div> 
+</body>
+<div id="top-header">
+    <div class="top-header">
+        <ul class="header-links pull-left">
+        </ul>
+        <ul class="header-links pull-right">
+            <li><a href="#"><i class="fa fa-dollar"></i></a></li>
+        </ul>
+    </di
 {% endblock %}
